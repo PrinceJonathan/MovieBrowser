@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Browser</title>
+    <link rel="stylesheet" href="./css/index.css">
+
+    <!-- 引用 Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- 引用FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="bg-text">
+            <form class="form-inline  justify-content-center">
+                <input id="inputMovie" class="form-control mr-sm-2" style="border-radius: 20px;" type="text" placeholder="Movie's Title...">
+                <button id="search" class="btn btn-primary" style="border-radius: 20px;" type="button"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <!-- 產品列表 -->
+        <div class="row" id="movie-result">
+        </div>
+
+        <div id="movies"></div>
+
+        <!-- 分頁 -->
+        <div class="row" id="page">
+            <div class="col">
+                <nav aria-label="Page navigation example">
+                    <ul id="page-number" class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 引入 Bootstrap 的 JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- 引入我們自己寫的 JavaScript -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

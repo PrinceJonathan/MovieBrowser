@@ -1,0 +1,30 @@
+.row {
+    justify-content: center;
+}
+
+.item {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-left: 14px;
+    margin-right: 0px;
+    margin-top: 20px;
+}
+
+.image {
+    width: 300px;
+    height: 450px;
+}
+
+.vote {
+    display: flex;
+    justify-content: center;
+}
+
+.fa-star {
+    margin-right: 3px;
+    color: rgba(255, 255, 0, 0.918);
+}
+
+.star {
+    font-size: 1.5em;
+}
