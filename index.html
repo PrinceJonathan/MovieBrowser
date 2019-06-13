@@ -123,9 +123,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+
     <!-- 引入我們自己寫的 JavaScript -->
     <script src="./js/index.js"></script>
     <!-- Javascript -->
+    <script>
+        $(document).ready(function() {
+
+            $('.drag').draggable({
+
+                drag: function(event, ui) {
+                    $(this).css({});
+                },
+                revert: true
+
+            });
+            $('.drop').droppable({
+
+                drop: function(event, ui) {
+
+                    $(this).droppable({
+                        disabled: true
+                    });
+                    $(ui.draggable).draggable({
+                        revert: false,
+                        disabled: true
+                    }).css({
+                        'cursor': 'default',
+                    });
+                    $(ui.draggable).position({
+                        at: 'center',
+                        my: 'center',
+                        of: this
+                    });
+                }
+
+            });
+        });
+    </script>
 
 </body>
 
