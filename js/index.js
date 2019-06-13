@@ -6,8 +6,8 @@ $(() => {
 
 
     var newItem = (item) => {
-        $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
-        $h5 = $('<h5>').attr('class', 'name').text(item.title)
+        $img = $('<img>').attr('class', 'drag').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
+        $h5 = $('<h5>').attr('class', 'name').addClass('drag').text(item.title)
         $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
         $p = $('<p>').attr('class', 'star').text(item.vote_average)
         $vote = $('<div>').attr('class', 'vote').append($star).append($p)
@@ -133,7 +133,7 @@ $(() => {
         }, "json")
     })
 
-    // $('#search').keypress(function() {
+    // $('#inputMovie').on('keypress', () => {
     //     console.log("Handler for .keypress() called.");
     //     showItem()
     // });

@@ -1,3 +1,9 @@
+img {
+    width: 180px;
+    height: 230px;
+    padding: 10px;
+}
+
 .row {
     justify-content: center;
 }
@@ -27,4 +33,23 @@
 
 .star {
     font-size: 1.5em;
+}
+
+.card {
+    margin: 5px;
+    padding: 0.3em;
+}
+
+.cardbody {
+    padding: 0rem 1.25rem 1.25rem 1.25rem;
+}
+
+.drag {
+    cursor: pointer;
+}
+
+#notes {
+    background-color: #3e3e3e;
+    padding: 1em 2em 2em 2em;
+    border-radius: 2em;
 }

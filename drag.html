@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<script type="text/javascript" src="http://www.pureexample.com/js/lib/jquery.ui.touch-punch.min.js"></script>
+
+
+<!-- CSS -->
+<style type="text/css">
+    .square {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        text-align: center;
+        line-height: 100px;
+        float: left;
+        background-color: lightblue;
+        cursor: pointer;
+    }
+    
+    .squaredotted {
+        width: 150px;
+        height: 150px;
+        border: 1px dotted gray;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        text-align: center;
+        line-height: 150px;
+        float: left;
+        background-color: lightgray;
+    }
+</style>
+
+
+<!-- Javascript -->
+<script>
+    $(function() {
+        $("#s1").draggable({
+            revert: "valid",
+            drag: function(event, ui) {
+                $("#info").html("<font color=red>此方框若拖曳到目標區內就會返回到原先位置</font>");
+            }
+        });
+        $("#s2").draggable({
+            revert: "invalid",
+            drag: function(event, ui) {
+                $("#info").html("<font color=red>此方框若沒拖曳到目標區內就會返回到原先位置</font> ");
+            }
+        });
+        $(".squaredotted").droppable({
+            drop: function(event, ui) {
+                $(this).css("background-color", "lightgreen")
+            },
+            out: function(event, ui) {
+                $(this).css("background-color", "")
+            }
+        });
+    });
+</script>
+
+<!-- HTML -->
+<div style="float:left">
+    <div id="s1" class="square">方框1</div>
+</div>
+<div style="float:left">
+    <div id="s2" class="square">方框2</div>
+</div>
+<div style="float:left;margin-left:50px;">
+    <div class="squaredotted">拖曳至此(目標區)</div>
