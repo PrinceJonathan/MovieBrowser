@@ -13,6 +13,8 @@
     <!-- 引用FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+
 </head>
 
 <body>
@@ -47,42 +49,42 @@
 
     <div class="container" style="margin-top: 4em;">
 
-        <div class="row .squaredotted" id="notes">
+        <div class="row" id="notes">
 
             <div class="col-12">
                 <p style="text-align: center; font-size: 2em; font-weight: 600; line-height: 1.5; color: #1d1d1d;">Drag here</p>
             </div>
 
             <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Love.jpg" class="drag">
+                <img src="./img/Love.jpg" class="drop">
                 <div class="cardbody">
                     <h5 class="card-title">Romantic</h5>
                     <a href="#" class="btn btn-primary">See Ur notes</a>
                 </div>
             </div>
             <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Sci fi.jpg" class="drag">
+                <img src="./img/Sci fi.jpg" class="drop">
                 <div class="cardbody">
                     <h5 class="card-title">Sci-fi</h5>
                     <a href="#" class="btn btn-primary">See Ur notes</a>
                 </div>
             </div>
             <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/comedy.jpg">
+                <img src="./img/comedy.jpg" class="drop">
                 <div class="cardbody">
                     <h5 class="card-title">Comedy</h5>
                     <a href="#" class="btn btn-primary">See Ur notes</a>
                 </div>
             </div>
             <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Thriller.jpg">
+                <img src="./img/Thriller.jpg" class="drop">
                 <div class="cardbody">
                     <h5 class="card-title">Thriller</h5>
                     <a href="#" class="btn btn-primary">See Ur notes</a>
                 </div>
             </div>
             <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Action.jpg">
+                <img src="./img/Action.jpg" class="drop">
                 <div class="cardbody">
                     <h5 class="card-title">Action</h5>
                     <a href="#" class="btn btn-primary">See Ur notes</a>
@@ -126,42 +128,13 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
 
+    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
     <!-- 引入我們自己寫的 JavaScript -->
     <script src="./js/index.js"></script>
     <!-- Javascript -->
     <script>
-        $(document).ready(function() {
-
-            $('.drag').draggable({
-
-                drag: function(event, ui) {
-                    $(this).css({});
-                },
-                revert: true
-
-            });
-            $('.drop').droppable({
-
-                drop: function(event, ui) {
-
-                    $(this).droppable({
-                        disabled: true
-                    });
-                    $(ui.draggable).draggable({
-                        revert: false,
-                        disabled: true
-                    }).css({
-                        'cursor': 'default',
-                    });
-                    $(ui.draggable).position({
-                        at: 'center',
-                        my: 'center',
-                        of: this
-                    });
-                }
-
-            });
-        });
     </script>
 
 </body>

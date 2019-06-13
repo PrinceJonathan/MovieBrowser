@@ -4,10 +4,9 @@ $(() => {
 
     var items = null
 
-
     var newItem = (item) => {
-        $img = $('<img>').attr('class', 'drag').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
-        $h5 = $('<h5>').attr('class', 'name').addClass('drag').text(item.title)
+        $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
+        $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
         $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
         $p = $('<p>').attr('class', 'star').text(item.vote_average)
         $vote = $('<div>').attr('class', 'vote').append($star).append($p)
@@ -17,7 +16,24 @@ $(() => {
 
         $col = $('<div>').attr('class', 'col-*').append($item)
         $('#movie-result').append($col)
+        $col.draggable({
+            revert: true
+        })
     }
+
+    $('#notes').droppable({
+        drop: function(event, ui) {
+            ui.draggable
+                .find("img")
+                .animate({
+                    width: "100px",
+                    height: "150px"
+                })
+            ui.draggable.detach().appendTo($(this));
+
+        }
+    });
+
 
     var showItem = () => {
         $('#page').show()
