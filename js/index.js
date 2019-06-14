@@ -245,8 +245,9 @@ $(() => {
         }, "json")
     })
 
-    $(document).keypress(function(e) {
+    $('#inputMovie').keypress(function(e) {
         if (e.which == 13) {
+            console.log('You click Enter')
             var name = $('#inputMovie').val()
             $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
                 if (response) {
@@ -261,12 +262,13 @@ $(() => {
 
 
                 } else {
-                    $('#heroName').text('伺服器出錯')
-                    $('#exampleModal').modal('show')
+                    console.log('sdfsdfsd')
                 }
 
 
             }, "json")
+        } else {
+            console.log('dsf')
         }
     });
 
