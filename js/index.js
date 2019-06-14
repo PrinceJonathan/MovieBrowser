@@ -19,45 +19,16 @@ $(() => {
     var items = null
 
     var newItem = (item) => {
-        // $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
-        // $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
-        // $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
-        // $p = $('<p>').attr('class', 'star').text(item.vote_average)
-        // $vote = $('<div>').attr('class', 'vote').append($star).append($p)
-        // $id = $('<div>').attr('id', item.id)
-        // $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote).append($id)
+        $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
+        $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
+        $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
+        $p = $('<p>').attr('class', 'star').text(item.vote_average)
+        $vote = $('<div>').attr('class', 'vote').append($star).append($p)
+        $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote)
+        $col = $('<div>').attr('class', 'col-*').append($item)
+        $('#movie-result').append($col)
 
-        // $col = $('<div>').attr('class', 'col-*').append($item)
-        // $('#movie-result').append($col)
-
-        // $col.draggable({
-        //     revert: true,
-        //     start: function() {
-        //         // $('#movie-result').css({
-        //         //     'filter': 'blur(2px)',
-        //         //     '-webkit-filter': 'blur(2px)'
-        //         // })
-        //         var scrollToElement = function(el, ms) {
-        //             var speed = (ms) ? ms : 800;
-        //             $('html,body').animate({
-        //                 scrollTop: $(el).offset().top
-        //             }, speed);
-        //         }
-        //         scrollToElement('#notes', 800);
-        //     }
-        // })
-
-        let movie = ''
-
-        movie += `
-            <div class="col-* drag" style="position: relative;">
-            <div class="item"><img class="image" src="https://image.tmdb.org/t/p/w300/${item.poster_path}">
-            <p class="name cursor">${item.title}</p>
-            <div class="vote"><i class="fas fa-star fa-2x"></i>
-            <p class="star">${item.vote_average}</p></div></div></div>
-            `
-
-        $('.drag').draggable({
+        $col.draggable({
             revert: true,
             start: function() {
                 // $('#movie-result').css({
@@ -74,18 +45,46 @@ $(() => {
             }
         })
 
-        $('#movie-result').append(movie)
+        // let movie = ''
+
+        // movie += `
+        //     <div class="col-* drag" style="position: relative;">
+        //     <div class="item"><img class="image" src="https://image.tmdb.org/t/p/w300/${item.poster_path}">
+        //     <p class="name cursor">${item.title}</p>
+        //     <div class="vote"><i class="fas fa-star fa-2x"></i>
+        //     <p class="star">${item.vote_average}</p></div></div></div>
+        //     `
+
+        // $('.drag').draggable({
+        //     revert: true,
+        //     start: function() {
+        //         // $('#movie-result').css({
+        //         //     'filter': 'blur(2px)',
+        //         //     '-webkit-filter': 'blur(2px)'
+        //         // })
+        //         var scrollToElement = function(el, ms) {
+        //             var speed = (ms) ? ms : 800;
+        //             $('html,body').animate({
+        //                 scrollTop: $(el).offset().top
+        //             }, speed);
+        //         }
+        //         scrollToElement('#notes', 800);
+        //     }
+        // })
+
+        // $('#movie-result').append(movie)
     }
 
     var danny = () => {
         $.each(dropGenre, function(i) {
-            droppable(dropGenre[i], genreBody[i])
+            dropping(dropGenre[i], genreBody[i])
         });
     }
 
 
-    var droppable = (dropGenre, genreBody) => {
+    var dropping = (dropGenre, genreBody) => {
         $(dropGenre).droppable({
+            accept: '#movie-result > div',
             drop: function(event, ui) {
                 ui.draggable
                     .find("img")
@@ -222,7 +221,7 @@ $(() => {
     }
 
 
-
+    // 搜尋電影
     $('#search').on('click', () => {
         var name = $('#inputMovie').val()
         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
@@ -251,5 +250,6 @@ $(() => {
     //     showItem()
     // });
 
-    danny();
+    // dropping 電影類型
+    danny()
 })
