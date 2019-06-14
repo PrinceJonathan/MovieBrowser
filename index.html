@@ -19,7 +19,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top" style="position: fixed; overflow: hidden; background-color: #2d6093!important;
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="position: fixed; overflow: hidden; background-color: #2d6093!important;
     position: fixed;
     /* Set the navbar to fixed position */
     top: 0;
@@ -27,7 +27,7 @@
     width: 100%;
     /* Full width */">
         <div class="container">
-            <a class="navbar-brand" href="#">Movie Diary</a>
+            <a class="navbar-brand" href="./index.html">Movie Diary</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                           <span class="navbar-toggler-icon"></span>
                         </button>
@@ -49,51 +49,189 @@
 
     <div class="container" style="margin-top: 4em;">
 
+        <h1 style="text-align: center;">Create Ur Own Movie Diary</h1>
+
         <div class="row" id="notes">
 
             <div class="col-12">
                 <p style="text-align: center; font-size: 2em; font-weight: 600; line-height: 1.5; color: #1d1d1d;">Drag here</p>
             </div>
 
-            <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Love.jpg" class="drop">
+            <div class="card col-*" style="border-radius: 1em;" id="dropLove">
+                <img src="./img/Love.jpg">
                 <div class="cardbody">
                     <h5 class="card-title">Romantic</h5>
-                    <a href="#" class="btn btn-primary">See Ur notes</a>
+                    <a href="#" class="btn btn-primary" id="Love">See Ur notes</a>
                 </div>
             </div>
-            <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Sci fi.jpg" class="drop">
+            <div class="card col-*" style="border-radius: 1em;" id="dropSciFi">
+                <img src="./img/Sci fi.jpg">
                 <div class="cardbody">
                     <h5 class="card-title">Sci-fi</h5>
-                    <a href="#" class="btn btn-primary">See Ur notes</a>
+                    <a href="#" class="btn btn-primary" id="SciFi">See Ur notes</a>
                 </div>
             </div>
-            <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/comedy.jpg" class="drop">
+            <div class="card col-*" style="border-radius: 1em;" id="dropComedy">
+                <img src="./img/comedy.jpg">
                 <div class="cardbody">
                     <h5 class="card-title">Comedy</h5>
-                    <a href="#" class="btn btn-primary">See Ur notes</a>
+                    <a href="#" class="btn btn-primary" id="Comedy">See Ur notes</a>
                 </div>
             </div>
-            <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Thriller.jpg" class="drop">
+            <div class="card col-*" style="border-radius: 1em;" id="dropThriller">
+                <img src="./img/Thriller.jpg">
                 <div class="cardbody">
                     <h5 class="card-title">Thriller</h5>
-                    <a href="#" class="btn btn-primary">See Ur notes</a>
+                    <a href="#" class="btn btn-primary" id="Thriller">See Ur notes</a>
                 </div>
             </div>
-            <div class="card col-*" style="border-radius: 1em;">
-                <img src="./img/Action.jpg" class="drop">
+            <div class="card col-*" style="border-radius: 1em;" id="dropAction">
+                <img src="./img/Action.jpg">
                 <div class="cardbody">
                     <h5 class="card-title">Action</h5>
-                    <a href="#" class="btn btn-primary">See Ur notes</a>
+                    <a href="#" class="btn btn-primary" id="Action">See Ur notes</a>
                 </div>
             </div>
         </div>
 
         <!-- 電影列表 -->
         <div class="row" id="movie-result">
+        </div>
+
+
+        <!-- 愛情日記簿 -->
+        <div id="loveModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="loveHeader">
+                        <h5 class="modal-title" id="exampleModalLabel">Love</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                        </button>
+                    </div>
+                    <div class="modal-body row" id="loveBody" style="
+                    margin-right: 15px;
+                    margin-left: 15px;
+                ">
+                        <p class="modal-text">Write Ur Own Diary here</p>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <div class="recycle" style="border-color: #ef826e;">
+                            <h1 style="text-align: center;">Set Me Free</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 科幻日記簿 -->
+        <div id="sciFiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="sciFiHeader">
+                        <h5 class="modal-title" id="exampleModalLabel">Sci-fi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                    </div>
+                    <div class="modal-body row" id="sciFiBody" style="
+                        margin-right: 15px;
+                        margin-left: 15px;
+                    ">
+                        <p class="modal-text">Write Ur Own Diary here</p>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <div class="recycle" style="border-color: #ad4bad;">
+                            <h1 style="text-align: center;">Set Me Free</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 喜劇日記簿 -->
+        <div id="comedyModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="comedyHeader">
+                        <h5 class="modal-title" id="exampleModalLabel">Comedy</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                    </div>
+                    <div class="modal-body row" id="comedyBody" style="
+                        margin-right: 15px;
+                        margin-left: 15px;
+                    ">
+                        <p class="modal-text">Write Ur Own Diary here</p>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <div class="recycle" style="border-color: #e4e454;">
+                            <h1 style="text-align: center;">Set Me Free</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 恐怖日記簿 -->
+        <div id="thrillerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="thrillerHeader">
+                        <h5 class="modal-title" id="exampleModalLabel">Thriller</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                    </div>
+                    <div class="modal-body row" id="thrillerBody" style="
+                        margin-right: 15px;
+                        margin-left: 15px;
+                    ">
+                        <p class="modal-text">Write Ur Own Diary here</p>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <div class="recycle" style="border-color: #ef3977;">
+                            <h1 style="text-align: center;">Set Me Free</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 動作日記簿 -->
+        <div id="actionModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="actionHeader">
+                        <h5 class="modal-title" id="exampleModalLabel">Action</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    &times;
+                                </span>
+                            </button>
+                    </div>
+                    <div class="modal-body row" id="actionBody" style="
+                        margin-right: 15px;
+                        margin-left: 15px;
+                    ">
+                        <p class="modal-text">Write Ur Own Diary here</p>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center;">
+                        <div class="recycle" style="border-color: cornflowerblue;">
+                            <h1 style="text-align: center;">Set Me Free</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -116,26 +254,29 @@
             </div>
         </div>
 
-
+        <footer>
+            <div class="text-center">
+                2019 &copy; Jonathan@NTU
+            </div>
+        </footer>
     </div>
+
 
     <!-- 引入 Bootstrap 的 JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-
-    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 拖曳效果 JQuery -->
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="jquery.ui.touch-punch.min.js"></script>
 
     <!-- 引入我們自己寫的 JavaScript -->
     <script src="./js/index.js"></script>
-    <!-- Javascript -->
-    <script>
-    </script>
+    <script defer src="./js/html2canvas.min.js"></script>
+    <script defer src="./js/disintegrate.js"></script>
+    <script defer src="./js/snap.js"></script>
 
 </body>
 

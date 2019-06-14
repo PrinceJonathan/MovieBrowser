@@ -2,6 +2,16 @@ img {
     width: 180px;
     height: 230px;
     padding: 10px;
+    border-radius: 1.5em;
+}
+
+footer {
+    margin-top: 50px;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #9E9E9E;
+    padding-top: 25px;
+    color: #908f8f;
 }
 
 .row {
@@ -47,6 +57,49 @@ img {
 
 .drag {
     cursor: pointer;
+}
+
+.modal-content {
+    border-radius: 5em;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: flex-start;
+    margin: 1em;
+}
+
+.modal-footer {
+    justify-content: center;
+}
+
+.recycle {
+    width: 500px;
+    height: 200px;
+    border-style: dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loveHeader {
+    background-color: #ef826e;
+}
+
+#sciFiHeader {
+    background-color: #ca79ca;
+}
+
+#comedyHeader {
+    background-color: #ffff69;
+}
+
+#thrillerHeader {
+    background-color: #ef3977;
+}
+
+#actionHeader {
+    background-color: cornflowerblue;
 }
 
 #notes {

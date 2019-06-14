@@ -21,7 +21,7 @@ $(() => {
         })
     }
 
-    $('#notes').droppable({
+    $('#dropLove').droppable({
         drop: function(event, ui) {
             ui.draggable
                 .find("img")
@@ -29,10 +29,89 @@ $(() => {
                     width: "100px",
                     height: "150px"
                 })
-            ui.draggable.detach().appendTo($(this));
-
+            ui.draggable.detach().appendTo($('#loveBody'))
+            $('.modal-text').hide()
         }
     });
+
+    $('#dropSciFi').droppable({
+        drop: function(event, ui) {
+            ui.draggable
+                .find("img")
+                .animate({
+                    width: "100px",
+                    height: "150px"
+                })
+            ui.draggable.detach().appendTo($('#sciFiBody'))
+            $('.modal-text').hide()
+        }
+    });
+
+    $('#dropComedy').droppable({
+        drop: function(event, ui) {
+            ui.draggable
+                .find("img")
+                .animate({
+                    width: "100px",
+                    height: "150px"
+                })
+            ui.draggable.detach().appendTo($('#comedyBody'))
+            $('.modal-text').hide()
+        }
+    });
+
+    $('#dropThriller').droppable({
+        drop: function(event, ui) {
+            ui.draggable
+                .find("img")
+                .animate({
+                    width: "100px",
+                    height: "150px"
+                })
+            ui.draggable.detach().appendTo($('#thrillerBody'))
+            $('.modal-text').hide()
+        }
+    });
+
+    $('#dropAction').droppable({
+        drop: function(event, ui) {
+            ui.draggable
+                .find("img")
+                .animate({
+                    width: "100px",
+                    height: "150px"
+                })
+            ui.draggable.detach().appendTo($('#actionBody'))
+            $('.modal-text').hide()
+        }
+    });
+
+    $('.recycle').droppable({
+        drop: function(event, ui) {
+            ui.draggable.detach().hide()
+        }
+    });
+
+
+    $('#Love').on('click', () => {
+        $('#loveModal').modal('show')
+    })
+
+    $('#SciFi').on('click', () => {
+        $('#sciFiModal').modal('show')
+    })
+
+    $('#Comedy').on('click', () => {
+        $('#comedyModal').modal('show')
+    })
+
+    $('#Thriller').on('click', () => {
+        $('#thrillerModal').modal('show')
+    })
+
+    $('#Action').on('click', () => {
+        $('#actionModal').modal('show')
+    })
 
 
     var showItem = () => {
