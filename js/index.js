@@ -19,17 +19,45 @@ $(() => {
     var items = null
 
     var newItem = (item) => {
-        $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
-        $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
-        $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
-        $p = $('<p>').attr('class', 'star').text(item.vote_average)
-        $vote = $('<div>').attr('class', 'vote').append($star).append($p)
-        $id = $('<div>').attr('id', item.id)
-        $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote).append($id)
+        // $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
+        // $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
+        // $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
+        // $p = $('<p>').attr('class', 'star').text(item.vote_average)
+        // $vote = $('<div>').attr('class', 'vote').append($star).append($p)
+        // $id = $('<div>').attr('id', item.id)
+        // $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote).append($id)
 
-        $col = $('<div>').attr('class', 'col-*').append($item)
-        $('#movie-result').append($col)
-        $col.draggable({
+        // $col = $('<div>').attr('class', 'col-*').append($item)
+        // $('#movie-result').append($col)
+
+        // $col.draggable({
+        //     revert: true,
+        //     start: function() {
+        //         // $('#movie-result').css({
+        //         //     'filter': 'blur(2px)',
+        //         //     '-webkit-filter': 'blur(2px)'
+        //         // })
+        //         var scrollToElement = function(el, ms) {
+        //             var speed = (ms) ? ms : 800;
+        //             $('html,body').animate({
+        //                 scrollTop: $(el).offset().top
+        //             }, speed);
+        //         }
+        //         scrollToElement('#notes', 800);
+        //     }
+        // })
+
+        let movie = ''
+
+        movie += `
+            <div class="col-* drag" style="position: relative;">
+            <div class="item"><img class="image" src="https://image.tmdb.org/t/p/w300/${item.poster_path}">
+            <p class="name cursor">${item.title}</p>
+            <div class="vote"><i class="fas fa-star fa-2x"></i>
+            <p class="star">${item.vote_average}</p></div></div></div>
+            `
+
+        $('.drag').draggable({
             revert: true,
             start: function() {
                 // $('#movie-result').css({
@@ -45,6 +73,8 @@ $(() => {
                 scrollToElement('#notes', 800);
             }
         })
+
+        $('#movie-result').append(movie)
     }
 
     var danny = () => {
@@ -76,7 +106,7 @@ $(() => {
     });
 
 
-    // modal 出電影日誌
+    // modal 電影日誌
     $('#Love').on('click', () => {
         $('#loveModal').modal('show')
     })
@@ -104,6 +134,7 @@ $(() => {
         for (var i = 0; i <= items.length; i++) {
             newItem(items[i])
         }
+        // newItem()
     }
 
 
