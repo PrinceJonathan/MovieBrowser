@@ -245,10 +245,30 @@ $(() => {
         }, "json")
     })
 
-    // $('#inputMovie').on('keypress', () => {
-    //     console.log("Handler for .keypress() called.");
-    //     showItem()
-    // });
+    $(document).keypress(function(e) {
+        if (e.which == 13) {
+            var name = $('#inputMovie').val()
+            $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
+                if (response) {
+                    console.log(response)
+                    items = response.results
+                    pages = response.total_pages
+                    console.log(pages)
+                    newPage(pages)
+                    $('#movie-result').empty()
+                    showItem()
+
+
+
+                } else {
+                    $('#heroName').text('伺服器出錯')
+                    $('#exampleModal').modal('show')
+                }
+
+
+            }, "json")
+        }
+    });
 
     // dropping 電影類型
     danny()
