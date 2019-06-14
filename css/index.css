@@ -82,6 +82,13 @@ footer {
     align-items: center;
 }
 
+#infinityGlove {
+    background-image: url(../img/comedy.jpg);
+    width: 150px;
+    height: 250px;
+    margin-bottom: 30px;
+}
+
 #loveHeader {
     background-color: #ef826e;
 }

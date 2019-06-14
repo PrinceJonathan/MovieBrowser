@@ -1,5 +1,19 @@
 $(() => {
 
+    const dropGenre = [
+        '#dropLove',
+        '#dropSciFi',
+        '#dropComedy',
+        '#dropThriller',
+        '#dropAction',
+    ]
+    const genreBody = [
+        '#loveBody',
+        '#sciFiBody',
+        '#comedyBody',
+        '#thrillerBody',
+        '#actionBody',
+    ]
     $('#page').hide()
 
     var items = null
@@ -13,86 +27,56 @@ $(() => {
         $id = $('<div>').attr('id', item.id)
         $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote).append($id)
 
-
         $col = $('<div>').attr('class', 'col-*').append($item)
         $('#movie-result').append($col)
         $col.draggable({
-            revert: true
+            revert: true,
+            start: function() {
+                // $('#movie-result').css({
+                //     'filter': 'blur(2px)',
+                //     '-webkit-filter': 'blur(2px)'
+                // })
+                var scrollToElement = function(el, ms) {
+                    var speed = (ms) ? ms : 800;
+                    $('html,body').animate({
+                        scrollTop: $(el).offset().top
+                    }, speed);
+                }
+                scrollToElement('#notes', 800);
+            }
         })
     }
 
-    $('#dropLove').droppable({
-        drop: function(event, ui) {
-            ui.draggable
-                .find("img")
-                .animate({
-                    width: "100px",
-                    height: "150px"
-                })
-            ui.draggable.detach().appendTo($('#loveBody'))
-            $('.modal-text').hide()
-        }
-    });
+    var danny = () => {
+        $.each(dropGenre, function(i) {
+            droppable(dropGenre[i], genreBody[i])
+        });
+    }
 
-    $('#dropSciFi').droppable({
-        drop: function(event, ui) {
-            ui.draggable
-                .find("img")
-                .animate({
-                    width: "100px",
-                    height: "150px"
-                })
-            ui.draggable.detach().appendTo($('#sciFiBody'))
-            $('.modal-text').hide()
-        }
-    });
 
-    $('#dropComedy').droppable({
-        drop: function(event, ui) {
-            ui.draggable
-                .find("img")
-                .animate({
-                    width: "100px",
-                    height: "150px"
-                })
-            ui.draggable.detach().appendTo($('#comedyBody'))
-            $('.modal-text').hide()
-        }
-    });
-
-    $('#dropThriller').droppable({
-        drop: function(event, ui) {
-            ui.draggable
-                .find("img")
-                .animate({
-                    width: "100px",
-                    height: "150px"
-                })
-            ui.draggable.detach().appendTo($('#thrillerBody'))
-            $('.modal-text').hide()
-        }
-    });
-
-    $('#dropAction').droppable({
-        drop: function(event, ui) {
-            ui.draggable
-                .find("img")
-                .animate({
-                    width: "100px",
-                    height: "150px"
-                })
-            ui.draggable.detach().appendTo($('#actionBody'))
-            $('.modal-text').hide()
-        }
-    });
+    var droppable = (dropGenre, genreBody) => {
+        $(dropGenre).droppable({
+            drop: function(event, ui) {
+                ui.draggable
+                    .find("img")
+                    .animate({
+                        width: "100px",
+                        height: "150px"
+                    })
+                ui.draggable.detach().appendTo($(genreBody))
+                $('.modal-text').hide()
+            }
+        });
+    }
 
     $('.recycle').droppable({
         drop: function(event, ui) {
-            ui.draggable.detach().hide()
+            ui.draggable.detach().remove()
         }
     });
 
 
+    // modal 出電影日誌
     $('#Love').on('click', () => {
         $('#loveModal').modal('show')
     })
@@ -114,6 +98,7 @@ $(() => {
     })
 
 
+    // 新增電影
     var showItem = () => {
         $('#page').show()
         for (var i = 0; i <= items.length; i++) {
@@ -121,6 +106,8 @@ $(() => {
         }
     }
 
+
+    // 新增分頁
     var newPage = (n) => {
         var pageNum = n
 
@@ -233,4 +220,5 @@ $(() => {
     //     showItem()
     // });
 
+    danny();
 })
