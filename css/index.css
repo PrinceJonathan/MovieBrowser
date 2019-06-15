@@ -29,7 +29,7 @@ footer {
 .image {
     width: 200px;
     height: 250px;
-    cursor: pointer;
+    cursor: move;
 }
 
 .vote {
@@ -55,12 +55,13 @@ footer {
     padding: 0rem 1.25rem 1.25rem 1.25rem;
 }
 
-.cursor {
-    cursor: pointer;
-}
-
 .modal-content {
     border-radius: 5em;
+}
+
+.modal-header {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .modal-body {
@@ -80,6 +81,18 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.xclose {
+    position: absolute;
+    top: 8%;
+    left: 87%;
+    cursor: pointer;
+    color: #afafaf;
+}
+
+.xclose:hover {
+    color: #000000;
 }
 
 #infinityGlove {

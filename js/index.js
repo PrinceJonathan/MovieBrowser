@@ -14,21 +14,24 @@ $(() => {
         '#thrillerBody',
         '#actionBody',
     ]
-    $('#page').hide()
 
     var items = null
 
+    $('#page').hide()
+
+    // 從資料庫抓取電影並新增
     var newItem = (item) => {
         $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
-        $h5 = $('<p>').attr('class', 'name').addClass('drag').text(item.title)
+        $h5 = $('<p>').text(item.title)
         $star = $('<i>').attr('class', 'fas').addClass('fa-star').addClass('fa-2x')
         $p = $('<p>').attr('class', 'star').text(item.vote_average)
         $vote = $('<div>').attr('class', 'vote').append($star).append($p)
         $item = $('<div>').attr('class', 'item').append($img).append($h5).append($vote)
-        $col = $('<div>').attr('class', 'col-*').append($item)
+        $col = $('<div>').attr('class', 'col-*').addClass('drag').append($item)
         $('#movie-result').append($col)
 
-        $col.draggable({
+        $('.drag').draggable({
+            cancel: '.modal-body',
             revert: true,
             start: function() {
                 // $('#movie-result').css({
@@ -81,28 +84,152 @@ $(() => {
         });
     }
 
-
+    // 幫電影日誌區設立droppable事件
     var dropping = (dropGenre, genreBody) => {
         $(dropGenre).droppable({
             accept: '#movie-result > div',
             drop: function(event, ui) {
+                ui.draggable.draggable('destroy')
                 ui.draggable
-                    .find("img")
-                    .animate({
-                        width: "100px",
-                        height: "150px"
+                    .find('div')
+                    .append('<i class="far fa-times-circle xclose"></i>')
+                ui.draggable
+                    .find('.xclose')
+                    .on('click', () => {
+                        ui.draggable.remove()
                     })
+                ui.draggable
+                    .find('img')
+                    .css({
+                        width: '100px',
+                        height: '150px'
+                    })
+                    .removeClass('image')
+                ui.draggable
+                    .find('p')
+                    .css({
+                        fontSize: '0.8em'
+                    })
+                ui.draggable
+                    .find('i')
+                    .removeClass('fa-2x')
                 ui.draggable.detach().appendTo($(genreBody))
                 $('.modal-text').hide()
             }
         });
     }
 
-    $('.recycle').droppable({
-        drop: function(event, ui) {
-            ui.draggable.detach().remove()
+
+    // 點擊 #createNewGenre 打開 createNewGenreModal
+    $('#createNewGenre').on('click', () => {
+        $('#createNewGenreModal').modal('show')
+    })
+
+    // 點擊 #submitGenre 新增 Genre
+    $('#submitGenre').on('click', () => {
+
+        if ($('#genreName').val()) {
+            let genreName = $('#genreName').val()
+            let imgUrl = $('#imgUrl').val()
+            let newGenreModalName = genreName + 'Modal'
+            let dropNewGenre = 'drop' + genreName
+            let newGenreBody = genreName + 'Body'
+            let newGenre = `
+                <div class="card col-*" style="border-radius: 1em;" id="drop${genreName}">
+                    <img src= '${imgUrl}'>
+                    <div class="cardbody">
+                        <h5 class="card-title">${genreName}</h5>
+                        <a href="#" class="btn btn-primary" id="${genreName}">See Ur notes</a>
+                    </div>
+                    <i class="far fa-times-circle xclose" style="top: -2%;
+                    left: 100%;" onclick="document.getElementById('drop${genreName}').remove();"></i>
+                </div>
+                `
+            $('#notes').append(newGenre)
+
+
+
+            let newGenreModal = `
+                <div id="${newGenreModalName}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content" style="border-radius: 1rem;">
+                            <div class="modal-header" style="background-color: #4e60c3; border-top-left-radius: 1rem;
+                            border-top-right-radius: 1rem;">
+                                <h5 class="modal-title">${genreName}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body row" id="${genreName}Body" style="
+                            margin-right: 15px;
+                            margin-left: 15px;
+                        ">
+                                <p class="modal-text">Write Ur Own Diary here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+
+            $('#' + dropNewGenre).droppable({
+                accept: '#movie-result > div',
+                drop: function(event, ui) {
+                    ui.draggable.draggable('destroy')
+                    ui.draggable
+                        .find('div')
+                        .append('<i class="far fa-times-circle xclose"></i>')
+                    ui.draggable
+                        .find('.xclose')
+                        .on('click', () => {
+                            ui.draggable.remove()
+                        })
+                    ui.draggable
+                        .find('img')
+                        .css({
+                            width: '100px',
+                            height: '150px'
+                        })
+                        .removeClass('image')
+                    ui.draggable
+                        .find('p')
+                        .css({
+                            fontSize: '0.8em'
+                        })
+                    ui.draggable
+                        .find('i')
+                        .removeClass('fa-2x')
+                    ui.draggable.detach().appendTo('#' + newGenreBody)
+                    $('.modal-text').hide()
+                }
+            });
+
+            $('body').append(newGenreModal)
+
+            $('#' + genreName).on('click', () => {
+                $('#' + newGenreModalName).modal('show')
+            })
+
+
+        } else {
+            alert('U better type something, u mather farmer...')
         }
-    });
+
+    })
+
+
+    // $('.recycle').droppable({
+    //     drop: function(event, ui) {
+    //         ui.draggable
+    //             .find('img')
+    //             .animate({
+    //                 width: '50px',
+    //                 height: '30px'
+    //             })
+    //         ui.draggable.detach().remove()
+    //     }
+    // });
 
 
     // modal 電影日誌
@@ -127,7 +254,7 @@ $(() => {
     })
 
 
-    // 新增電影
+    // 呈現電影
     var showItem = () => {
         $('#page').show()
         for (var i = 0; i <= items.length; i++) {
@@ -169,8 +296,7 @@ $(() => {
 
 
                         } else {
-                            $('#heroName').text('伺服器出錯')
-                            $('#exampleModal').modal('show')
+                            alert('TMDb has been taken over by zombies. Run for ur own life!')
                         }
 
 
@@ -199,13 +325,9 @@ $(() => {
                             $('#movie-result').empty()
                             showItem()
 
-
-
                         } else {
-                            $('#heroName').text('伺服器出錯')
-                            $('#exampleModal').modal('show')
+                            alert('TMDb has been taken over by zombies. Run for ur own life!')
                         }
-
 
                     }, "json")
                 })
@@ -226,31 +348,7 @@ $(() => {
         var name = $('#inputMovie').val()
         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
             if (response) {
-                console.log(response)
-                items = response.results
-                pages = response.total_pages
-                console.log(pages)
-                newPage(pages)
-                $('#movie-result').empty()
-                showItem()
-
-
-
-            } else {
-                $('#heroName').text('伺服器出錯')
-                $('#exampleModal').modal('show')
-            }
-
-
-        }, "json")
-    })
-
-    $('#inputMovie').keypress(function(e) {
-        if (e.which == 13) {
-            console.log('You click Enter')
-            var name = $('#inputMovie').val()
-            $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
-                if (response) {
+                if (response.total_results != 0) {
                     console.log(response)
                     items = response.results
                     pages = response.total_pages
@@ -259,18 +357,54 @@ $(() => {
                     $('#movie-result').empty()
                     showItem()
 
-
-
                 } else {
-                    console.log('sdfsdfsd')
+                    alert("No result. Maybe that's because Game of thrones is pissing me off.")
+                    console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
                 }
 
 
-            }, "json")
-        } else {
-            console.log('dsf')
-        }
-    });
+
+            } else {
+                alert('TMDb has been taken over by zombies. Run for ur own life!')
+            }
+
+
+        }, "json")
+    })
+
+
+    // 按 Enter 時的查詢事件
+    // $('#inputMovie').keypress(function(e) {
+    //     if (e.which == 13) {
+    //         console.log('You click Enter')
+    //         var name = $('#inputMovie').val()
+    //         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
+    //             if (response) {
+    //                 if (response.total_results != 0) {
+    //                     console.log(response)
+    //                     items = response.results
+    //                     pages = response.total_pages
+    //                     console.log(pages)
+    //                     newPage(pages)
+    //                     $('#movie-result').empty()
+    //                     showItem()
+
+    //                 } else {
+    //                     alert("Zombies are taking over the database center. Run for ur life!         Just kidding. Search for other movies.")
+    //                     console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
+    //                 }
+
+    //             } else {
+    //                 alert('TMDb has been taken over by zombies. Run for ur own life!')
+    //                 console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
+    //             }
+
+
+    //         }, "json")
+    //     } else {
+    //         console.log('type faster, u mather farmer')
+    //     }
+    // });
 
     // dropping 電影類型
     danny()
