@@ -130,6 +130,9 @@ $(() => {
 
         if ($('#genreName').val()) {
             let genreName = $('#genreName').val()
+            while (genreName.indexOf(" ") >= 0) {
+                genreName = genreName.replace(" ", "_")
+            }
             let imgUrl = $('#imgUrl').val()
             let newGenreModalName = genreName + 'Modal'
             let dropNewGenre = 'drop' + genreName
