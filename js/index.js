@@ -19,6 +19,14 @@ $(() => {
 
     $('#page').hide()
 
+    // 滾動事件
+    var scrollToElement = function(el, ms) {
+        var speed = (ms) ? ms : 800;
+        $('html,body').animate({
+            scrollTop: $(el).offset().top
+        }, speed);
+    }
+
     // 從資料庫抓取電影並新增
     var newItem = (item) => {
         $img = $('<img>').attr('class', 'image').attr('src', "https://image.tmdb.org/t/p/w300/" + item.poster_path)
@@ -38,12 +46,6 @@ $(() => {
                 //     'filter': 'blur(2px)',
                 //     '-webkit-filter': 'blur(2px)'
                 // })
-                var scrollToElement = function(el, ms) {
-                    var speed = (ms) ? ms : 800;
-                    $('html,body').animate({
-                        scrollTop: $(el).offset().top
-                    }, speed);
-                }
                 scrollToElement('#notes', 800);
             }
         })
@@ -214,25 +216,14 @@ $(() => {
                 $('#' + newGenreModalName).modal('show')
             })
 
+            $('#createNewGenreModal').modal('hide')
+
 
         } else {
             alert('U better type something, u mather farmer...')
         }
 
     })
-
-
-    // $('.recycle').droppable({
-    //     drop: function(event, ui) {
-    //         ui.draggable
-    //             .find('img')
-    //             .animate({
-    //                 width: '50px',
-    //                 height: '30px'
-    //             })
-    //         ui.draggable.detach().remove()
-    //     }
-    // });
 
 
     // modal 電影日誌
@@ -350,6 +341,8 @@ $(() => {
     $('#search').on('click', () => {
         var name = $('#inputMovie').val()
         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
+
+            scrollToElement('#movie-result', 500);
             if (response) {
                 if (response.total_results != 0) {
                     console.log(response)
@@ -360,8 +353,9 @@ $(() => {
                     $('#movie-result').empty()
                     showItem()
 
+
                 } else {
-                    alert("No result. Maybe that's because Game of thrones is pissing me off.")
+                    alert("No result. Zombies has taken over the Database. Run for ur own life!")
                     console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
                 }
 
@@ -374,40 +368,6 @@ $(() => {
 
         }, "json")
     })
-
-
-    // 按 Enter 時的查詢事件
-    // $('#inputMovie').keypress(function(e) {
-    //     if (e.which == 13) {
-    //         console.log('You click Enter')
-    //         var name = $('#inputMovie').val()
-    //         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
-    //             if (response) {
-    //                 if (response.total_results != 0) {
-    //                     console.log(response)
-    //                     items = response.results
-    //                     pages = response.total_pages
-    //                     console.log(pages)
-    //                     newPage(pages)
-    //                     $('#movie-result').empty()
-    //                     showItem()
-
-    //                 } else {
-    //                     alert("Zombies are taking over the database center. Run for ur life!         Just kidding. Search for other movies.")
-    //                     console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
-    //                 }
-
-    //             } else {
-    //                 alert('TMDb has been taken over by zombies. Run for ur own life!')
-    //                 console.log('Run, or U gonna watch the last eposide of Game of Thrones til death.')
-    //             }
-
-
-    //         }, "json")
-    //     } else {
-    //         console.log('type faster, u mather farmer')
-    //     }
-    // });
 
     // dropping 電影類型
     danny()
