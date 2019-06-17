@@ -217,6 +217,7 @@ $(() => {
             })
 
             $('#createNewGenreModal').modal('hide')
+            scrollToElement($('#' + dropNewGenre), 500);
 
 
         } else {
@@ -342,7 +343,7 @@ $(() => {
         var name = $('#inputMovie').val()
         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
 
-            scrollToElement('#movie-result', 500);
+            scrollToElement('#movie-result', 500)
             if (response) {
                 if (response.total_results != 0) {
                     console.log(response)
