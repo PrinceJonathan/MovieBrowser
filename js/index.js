@@ -343,6 +343,9 @@ $(() => {
         var name = $('#inputMovie').val()
         $.get('https://api.themoviedb.org/3/search/movie?api_key=21cfec695b765679aaad63530491a284&language=en-US&query=' + name + '&page=1&include_adult=false', function(response) {
 
+            if (name == '香港') {
+                alert('原諒我這一生不羈放縱愛自由')
+            }
             scrollToElement('#movie-result', 500)
             if (response) {
                 if (response.total_results != 0) {
